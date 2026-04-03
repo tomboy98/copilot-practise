@@ -1,8 +1,17 @@
 # create a function to check if a number is prime
 def is_prime(n):
+    if not isinstance(n, int):
+        raise TypeError("n must be an integer")
     if n <= 1:
         return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    limit = int(n ** 0.5) + 1
+    while i <= limit:
+        if n % i == 0 or n % (i + 2) == 0:
             return False
+        i += 6
     return True
